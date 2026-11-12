@@ -22,6 +22,7 @@ dimensions:
     world: "world"
     label: "<green><bold>OVERWORLD"
     model: "rtpgui:overworld"      # item model from the resource pack
+    label-model: "rtpgui:overworld_label"   # name plate image ("" = use the text label above)
     material: PAPER                # shown if the resource pack is missing
     command: "rtp world {world}"   # run as the player (BetterRTP)
     permission: "rtpgui.overworld"
@@ -30,6 +31,7 @@ dimensions:
     world: "world_nether"
     label: "<red><bold>NETHER"
     model: "rtpgui:nether"
+    label-model: "rtpgui:nether_label"
     material: PAPER
     command: "rtp world {world}"
     permission: "rtpgui.nether"
@@ -38,6 +40,7 @@ dimensions:
     world: "world_the_end"
     label: "<light_purple><bold>END"
     model: "rtpgui:end"
+    label-model: "rtpgui:end_label"
     material: PAPER
     command: "rtp world {world}"
     permission: "rtpgui.end"
