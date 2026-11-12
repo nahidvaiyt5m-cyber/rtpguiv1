@@ -1,0 +1,72 @@
+# ---------------------------------------------------------------
+# RtpGui config
+# ---------------------------------------------------------------
+
+# true = /rtp (without arguments) opens the GUI instead.
+intercept-rtp: true
+intercept-commands: [rtp]
+
+# true = a dimension button is shown only if the player has its permission.
+require-permissions: false
+
+# Auto close
+timeout-seconds: 30
+close-distance: 7.0
+
+# Dimensions. Order here = order in the GUI (left to right).
+# Set enabled: false to hide one (the rest re-center automatically).
+# You can also use: /rtpgui toggle <nether|end|overworld>
+dimensions:
+  overworld:
+    enabled: true
+    world: "world"
+    label: "<green><bold>OVERWORLD"
+    model: "rtpgui:overworld"      # item model from the resource pack
+    material: PAPER                # shown if the resource pack is missing
+    command: "rtp world {world}"   # run as the player (BetterRTP)
+    permission: "rtpgui.overworld"
+  nether:
+    enabled: true
+    world: "world_nether"
+    label: "<red><bold>NETHER"
+    model: "rtpgui:nether"
+    material: PAPER
+    command: "rtp world {world}"
+    permission: "rtpgui.nether"
+  end:
+    enabled: true
+    world: "world_the_end"
+    label: "<light_purple><bold>END"
+    model: "rtpgui:end"
+    material: PAPER
+    command: "rtp world {world}"
+    permission: "rtpgui.end"
+
+close-button:
+  model: "rtpgui:close"
+  material: PAPER
+  width: 2.6
+  height: 0.7
+
+layout:
+  distance: 3.5          # blocks in front of the player
+  panel-scale: 1.8       # size of each image
+  spacing: 2.1           # distance between image centers
+  panel-center-y: 1.7    # image center height above the player's feet
+  yaw-offset: 0          # set 180 if the images appear backwards/mirrored
+
+animation:
+  pop-ticks: 12
+  stagger-ticks: 2
+
+messages:
+  prefix: "<dark_gray>[<aqua>RTP</aqua>]</dark_gray> "
+  no-dimensions: "<red>No dimension is available for RTP right now."
+  world-missing: "<red>World <white>{world}</white> does not exist."
+  no-permission: "<red>You don't have permission."
+  only-player: "<red>Only players can use this."
+  reloaded: "<green>Config reloaded."
+  toggled: "<yellow>{dim} is now {state}<yellow>."
+  unknown-dim: "<red>Unknown dimension: {dim}"
+  usage: "<gray>/rtpgui [open|toggle <dim> [on|off]|reload|status]"
+  status-line: "<gray>- <white>{dim}</white>: {state} <dark_gray>({world})"

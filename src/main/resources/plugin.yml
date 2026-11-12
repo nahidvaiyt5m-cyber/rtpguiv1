@@ -1,0 +1,29 @@
+name: RtpGui
+version: '1.0.0'
+main: dev.rtpgui.RtpGuiPlugin
+api-version: '26.1.2'
+description: Pop-up 3D RTP world selector (Overworld / Nether / End) for BetterRTP
+softdepend: [BetterRTP]
+commands:
+  rtpgui:
+    description: Open the RTP GUI or manage it
+    usage: /rtpgui [open|toggle|reload|status]
+permissions:
+  rtpgui.use:
+    description: Open the RTP GUI
+    default: true
+  rtpgui.admin:
+    description: Manage RtpGui
+    default: op
+  rtpgui.intercept.bypass:
+    description: Skip the GUI when typing /rtp
+    default: false
+  rtpgui.overworld:
+    description: Use Overworld RTP in the GUI
+    default: true
+  rtpgui.nether:
+    description: Use Nether RTP in the GUI
+    default: true
+  rtpgui.end:
+    description: Use End RTP in the GUI
+    default: true
