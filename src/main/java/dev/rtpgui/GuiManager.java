@@ -61,6 +61,7 @@ public final class GuiManager {
                         d.getString("world", "world"),
                         d.getString("label", id),
                         d.getString("model", "rtpgui:" + id),
+                        d.getString("label-model", "rtpgui:" + id + "_label"),
                         d.getString("material", "PAPER"),
                         d.getString("command", "rtp world {world}"),
                         d.getString("permission", "")));
@@ -172,12 +173,20 @@ public final class GuiManager {
             s.anims.add(new GuiSession.Anim(img, target));
             schedulePop(s, img, target, delay + i * stagger, pop);
 
-            // name label above the image
-            Location labelLoc = panelLoc.clone().add(0, panelScale / 2.0 + 0.3, 0);
-            Transformation labelTarget = tf(new Vector3f(0, 0, 0), new Vector3f(1.8f, 1.8f, 1.8f));
-            TextDisplay label = spawnText(player, labelLoc, d.label(), labelTarget);
-            s.anims.add(new GuiSession.Anim(label, labelTarget));
-            schedulePop(s, label, labelTarget, delay + i * stagger, pop);
+            // name plate above the image
+            float labelH = panelScale * 0.16f;
+            Location labelLoc = panelLoc.clone().add(0, panelScale / 2.0 + labelH / 2.0 + 0.08, 0);
+            if (!d.labelModel().isEmpty()) {
+                Transformation labelTarget = tf(new Vector3f(0, 0, 0), new Vector3f(panelScale, labelH, 1f));
+                ItemDisplay plate = spawnItem(player, labelLoc, makeItem(d.material(), d.labelModel()), labelTarget);
+                s.anims.add(new GuiSession.Anim(plate, labelTarget));
+                schedulePop(s, plate, labelTarget, delay + i * stagger, pop);
+            } else {
+                Transformation labelTarget = tf(new Vector3f(0, 0, 0), new Vector3f(1.0f, 1.0f, 1.0f));
+                TextDisplay label = spawnText(player, labelLoc, d.label(), labelTarget);
+                s.anims.add(new GuiSession.Anim(label, labelTarget));
+                schedulePop(s, label, labelTarget, delay + i * stagger, pop);
+            }
 
             // hitbox (bottom-center of the image)
             Location hitLoc = panelLoc.clone().add(0, -panelScale / 2.0, 0);
